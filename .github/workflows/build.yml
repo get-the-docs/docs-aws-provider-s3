@@ -79,8 +79,8 @@ jobs:
 
       - name: Prepare test environment
         env:
-          GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ env.TEST_AWS_BUCKETNAME }}
-          GETTHEDOCS_REPO_AWS_S3_REGION: ${{ env.TEST_AWS_REGION }}
+          GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ secrets.TEST_AWS_BUCKETNAME }}
+          GETTHEDOCS_REPO_AWS_S3_REGION: ${{ secrets.TEST_AWS_REGION }}
         run: |
           sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" src/test/resources/document-engine.properties
           sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" src/test/resources/document-engine.properties
@@ -175,8 +175,8 @@ jobs:
 
       - name: Prepare test environment
         env:
-          GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ env.TEST_AWS_BUCKETNAME }}
-          GETTHEDOCS_REPO_AWS_S3_REGION: ${{ env.TEST_AWS_REGION }}
+          GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ secrets.TEST_AWS_BUCKETNAME }}
+          GETTHEDOCS_REPO_AWS_S3_REGION: ${{ secrets.TEST_AWS_REGION }}
         run: |
           sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" src/test/resources/document-engine.properties
           sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" src/test/resources/document-engine.properties
@@ -230,8 +230,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Prepare test environment
         env:
-          GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ env.TEST_AWS_BUCKETNAME }}
-          GETTHEDOCS_REPO_AWS_S3_REGION: ${{ env.TEST_AWS_REGION }}
+          GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ secrets.TEST_AWS_BUCKETNAME }}
+          GETTHEDOCS_REPO_AWS_S3_REGION: ${{ secrets.TEST_AWS_REGION }}
         run: |
           sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" src/test/resources/document-engine.properties
           sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" src/test/resources/document-engine.properties
