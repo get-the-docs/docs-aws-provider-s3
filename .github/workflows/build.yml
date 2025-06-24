@@ -124,6 +124,7 @@ jobs:
         with:
           path: |
             ~/.m2/repository
+            !~/.m2/repository/org/getthedocs/**
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
@@ -137,6 +138,9 @@ jobs:
           sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" src/test/resources/document-engine.properties
 
       - name: Maven site
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: mvn -B verify site --file pom.xml -Dspring.profiles.active=local
 
 
@@ -200,4 +204,4 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          name: document-engine
+          name: docs-aws-provider-s3
