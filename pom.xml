@@ -383,9 +383,6 @@
                             <generateHtml>true</generateHtml>
                             <generateJson>false</generateJson>
                             <excludes>
-                                <exclude>**/api/configuration/*.java</exclude>
-                                <exclude>**/ServiceApplication.java</exclude>
-                                <exclude>**/api/model/*.java</exclude>
                                 <exclude>**/src/test/**/*.java</exclude>
                             </excludes>
                         </configuration>
@@ -400,7 +397,7 @@
                             <execution>
                                 <phase>verify</phase>
                                 <goals>
-                                    <goal>aggregate</goal>
+                                    <!--goal>aggregate</goal-->
                                     <goal>clover</goal>
                                     <goal>log</goal>
                                     <goal>check</goal>
