@@ -65,6 +65,7 @@ jobs:
     needs: build_job
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
+    environment: release
 
     steps:
       - name: Determine release tag
