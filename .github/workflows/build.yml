@@ -107,6 +107,7 @@ jobs:
 
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/heads/')  || github.event_name == 'pull_request' # runs only if it's a branch or a pull request
+    environment: ci
 
     steps:
       - name: Git checkout
