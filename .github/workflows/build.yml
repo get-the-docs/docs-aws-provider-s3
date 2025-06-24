@@ -82,8 +82,8 @@ jobs:
           GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ env.TEST_AWS_BUCKETNAME }}
           GETTHEDOCS_REPO_AWS_S3_REGION: ${{ env.TEST_AWS_REGION }}
         run: |
-          sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" docs-provider-aws-s3/src/test/resources/document-engine.properties
-          sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" docs-provider-aws-s3/src/test/resources/document-engine.properties
+          sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" src/test/resources/document-engine.properties
+          sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" src/test/resources/document-engine.properties
 
       - name: Maven verify
         env:
@@ -178,8 +178,8 @@ jobs:
           GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ env.TEST_AWS_BUCKETNAME }}
           GETTHEDOCS_REPO_AWS_S3_REGION: ${{ env.TEST_AWS_REGION }}
         run: |
-          sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" docs-provider-aws-s3/src/test/resources/document-engine.properties
-          sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" docs-provider-aws-s3/src/test/resources/document-engine.properties
+          sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" src/test/resources/document-engine.properties
+          sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" src/test/resources/document-engine.properties
 
       - name: Maven verify
         env:
@@ -233,8 +233,8 @@ jobs:
           GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ env.TEST_AWS_BUCKETNAME }}
           GETTHEDOCS_REPO_AWS_S3_REGION: ${{ env.TEST_AWS_REGION }}
         run: |
-          sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" docs-provider-aws-s3/src/test/resources/document-engine.properties
-          sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" docs-provider-aws-s3/src/test/resources/document-engine.properties
+          sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" src/test/resources/document-engine.properties
+          sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" src/test/resources/document-engine.properties
       - name: Run Sonarcloud analysis
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
