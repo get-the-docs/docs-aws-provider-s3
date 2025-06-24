@@ -9,7 +9,7 @@ AWS S3 provider library for the GetTheDocs document engine to provide
 - Result store: see AwsS3ResultStore
 - Document structure repository: see AwsS3DocumentStructureRepository
 
-See the GetTheDocs project documentation at [www.getthedocs.tech](https:\\www.getthedocs.tech) for the main engine functionality.
+See the GetTheDocs project documentation at [www.getthedocs.tech](https://www.getthedocs.tech) for the main engine functionality.
 
 ## Usage
 
