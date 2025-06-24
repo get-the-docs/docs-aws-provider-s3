@@ -99,6 +99,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Prepare test environment
+        env:
+          GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ secrets.TEST_AWS_BUCKETNAME }}
+          GETTHEDOCS_REPO_AWS_S3_REGION: ${{ secrets.TEST_AWS_REGION }}
+        run: |
+          sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" src/test/resources/document-engine.properties
+          sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" src/test/resources/document-engine.properties
+
       - name: Test build
         run: mvn clean verify $MAVEN_OPTS $MAVEN_CLI_OPTS
 
@@ -150,6 +158,14 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+
+      - name: Prepare test environment
+        env:
+          GETTHEDOCS_REPO_AWS_S3_BUCKETNAME: ${{ secrets.TEST_AWS_BUCKETNAME }}
+          GETTHEDOCS_REPO_AWS_S3_REGION: ${{ secrets.TEST_AWS_REGION }}
+        run: |
+          sed -i "s/_BUCKETNAME_/$GETTHEDOCS_REPO_AWS_S3_BUCKETNAME/g" src/test/resources/document-engine.properties
+          sed -i "s/_BUCKET_REGION_/$GETTHEDOCS_REPO_AWS_S3_REGION/g" src/test/resources/document-engine.properties
 
       - name: Configure Git
         run: |
