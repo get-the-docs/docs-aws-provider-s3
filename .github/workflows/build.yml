@@ -25,7 +25,7 @@ jobs:
   build_job:
     name: Build
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/heads/') # runs only if it's a branch
+    if: startsWith(github.ref, 'refs/heads/')  || github.event_name == 'pull_request' # runs only if it's a branch or a pull request
 
     steps:
       - name: Git checkout
@@ -54,7 +54,7 @@ jobs:
     name: Run tests
     needs: build_job
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/heads/') # runs only if it's a branch
+    if: startsWith(github.ref, 'refs/heads/')  || github.event_name == 'pull_request' # runs only if it's a branch or a pull request
     environment: ci
 
     steps:
@@ -107,7 +107,7 @@ jobs:
       - test_job
 
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/heads/') # runs only if it's a branch
+    if: startsWith(github.ref, 'refs/heads/')  || github.event_name == 'pull_request' # runs only if it's a branch or a pull request
 
     steps:
       - name: Rebuild local Maven repository from cache
@@ -150,7 +150,7 @@ jobs:
       - build_job
       - test_job
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/heads/') # runs only if it's a branch
+    if: startsWith(github.ref, 'refs/heads/')  || github.event_name == 'pull_request' # runs only if it's a branch or a pull request
     environment: ci
 
     steps:
@@ -192,11 +192,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           name: document-engine
-      #    token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-      #    files: ./coverage1.xml,./coverage2.xml # optional
-      #    flags: unittests # optional
-      #    fail_ci_if_error: true # optional (default = false)
-      #    verbose: true # optional (default = false)
 
   analyze_job:
     name: Code analysis
@@ -204,7 +199,7 @@ jobs:
       - build_job
       - test_job
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/heads/') # runs only if it's a branch
+    if: startsWith(github.ref, 'refs/heads/')  || github.event_name == 'pull_request' # runs only if it's a branch or a pull request
     environment: ci
 
     steps:
@@ -247,10 +242,3 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: mvn -B -ntp verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=get-the-docs -Dsonar.projectKey=get-the-docs_document-engine -Dspring.profiles.active=local -Psonar
-#      - name: Archive production artifacts
-#        if: ${{ success() }}
-#        uses: actions/upload-artifact@v1
-#        with:
-#          name: docs-core
-#          path: /home/runner/work/document-engine/document-engine/docs-core/target/docs-core-1.0.1.jar
-#          path: ${{ github.workspace }}/**/target/docs*.jar
